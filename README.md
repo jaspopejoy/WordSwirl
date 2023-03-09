@@ -1,2 +1,2 @@
-# jsSiteTemplate
-Site Template for JS Projects
+# WordSwilrl
+A Plaindrome Application (aka. Taco Cat)
