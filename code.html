@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Jason Popejoy</title>
+    <title>WordSwirl: A Coding Project By Jason Popejoy</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,7 +27,7 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><img src="/img/JPMark.jpg" class="d-inline-block align-text-top"
-                    alt="Jason Popejoy Logo" width="40" height="38"> Counteri</a>
+                    alt="Jason Popejoy Logo" width="40" height="38"> WordSwirl</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -35,16 +35,16 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link"" href="/index.html">Home</a>
+                        <a class="nav-link"" href=" /index.html">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/app.html">The App</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page"href="/code.html">The Code</a>
+                        <a class="nav-link active" aria-current="page" href="/code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://github.com/jaspopejoy/Counteri.git">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/jaspopejoy/WordSwirl">Git Repo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" target="_blank" href="https://jasons-old-portfolio.netlify.app/">About</a>
@@ -57,24 +57,99 @@
     <!-- Main Section -->
     <main class="flex-shrink-0">
         <div class="container py-5 px-5 mt-5">
-            <h2 class="border-1 border-bottom border-dark">The Code for APP NAME.</h2>
+            <h2 class="border-1 border-bottom border-dark">The Code for WORDSWIRL.</h2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
-                    <pre class="line-numbers"><code class="language-javascript">
-                        // Call Hello World
-                        function helloworld{
-                            alert("hello world");
-                        }
-                    </code>
+                    <pre class="line-numbers">
+                        <code class="language-javascript">
+
+                            //get user input
+                            function getValues(){
+                            
+                                // make sure the alert is invisible
+                                document.getElementById("alert").classList.add("invisible");
+                            
+                                //get user string from the page
+                                let userString = document.getElementById("userString").value;
+                            
+                                //check for a palindrome
+                                let returnObj = checkForPalindrome(userString);
+                            
+                                //display message to the screen
+                                displayMessage(returnObj);
+                            
+                            }
+                            
+                            //check if string is palindrome
+                            function checkForPalindrome(userString){
+                            
+                                //change userString to lower case
+                                userString = userString.toLowerCase();
+                            
+                                //remove spaces and special characters
+                                let regex = /[^a-z0-9]/gi;
+                                userString = userString.replace(regex,"");
+                            
+                                //set up array
+                                let revString = [];
+                            
+                                //set up object
+                                let returnObj = {};
+                            
+                                //reverse userString
+                                for (let index = userString.length - 1; index >= 0; index--) {
+                                    revString += userString[index];        
+                                }
+                            
+                                //check to see if userString equals revString
+                                if (revString == userString) {
+                                    returnObj.msg = "Well done! you entered a palindrome!"
+                                }
+                                else {
+                                    returnObj.msg = "Sorry! You did not enter a palindrome!"
+                                }
+                            
+                                returnObj.reversed = revString;
+                            
+                                return returnObj;
+                            }
+                            
+                            // display a message to the screen
+                            function displayMessage(returnObj){
+                            
+                                document.getElementById("alertHeader").innerHTML = returnObj.msg;
+                                document.getElementById("msg").innerHTML = `Your Phrase Reversed Is: ${returnObj.reversed}`;
+                                document.getElementById("alert").classList.remove("invisible");
+                            }
+                        </code>
                     </pre>
                 </div>
-                <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays a message of "Hello World".</p>
+                <div class="col-lg-4 mt-4">
+                    <p>The Code is structured in Three functions.</p>
+                    <h5>getValues</h5>
                 </div>
+                <p>getValues first checks to ensure an alert is set to <strong>invisible</strong>. getValues then pulls
+                    the user input from the page using <strong>getElementById</strong> and stores it in the variable
+                    <strong>userString</strong>. The userString value is then passed to the
+                    <strong>checkForPalindrome</strong> function which checks for a palindrome and returns an array with
+                    the reversed userString which is then passed to the <strong>displayMessage</strong> function to be
+                    displayed to the user.
+                </p>
+                <h5>checkForPalindrome</h5>
+                <p>The <strong>checkForPalindrome</strong> function takes the entered string and changes any capitol
+                    letters to lower case using the <string>.toLowerCase()</string> method. The function then uses a
+                    <strong>regular expression</strong> to remove any spaces and special characters. Next an object and
+                    an array are set up and a for loop is uese to reverse the user input. Using an <strong>if/else
+                        statement</strong> the program then checks to see if the user input equals the reversed input.
+                    if it does, a 'well done' message is returned. If not a 'sorry' message is returned to the getValue
+                    function to be passed to the displayMessage function.
+                </p>
+                <h5>displayMessage</h5>
+                <p>The displayMessage function writes either the 'well done' or 'sorry' message to the page and prints
+                    out the user input in reverse. Lastly, the function removes the invisible designation from the alert
+                    so that it is shown with the user input and reversed input inside.
+                </p>
             </div>
-        </div>
     </main>
 
     <!-- Footer Section-->
@@ -89,12 +164,14 @@
                 </div>
                 <div class="col d-flex align-items-center justify-content-start justify-content-lg-end">
                     <div class="row">
-                        <div class="col social"><a href="https://www.linkedin.com/in/jason-popejoy/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                        <div class="col social"><a href="https://www.linkedin.com/in/jason-popejoy/" target="_blank"><i
+                                    class="fab fa-linkedin fa-2x"></i></a>
                         </div>
                         <div class="col social"><a href="https://twitter.com/jaspopejoy" target="_blank"><i
-                            class="fab fa-twitter fa-2x"></i></a>
+                                    class="fab fa-twitter fa-2x"></i></a>
                         </div>
-                        <div class="col social"><a href="https://github.com/jaspopejoy" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+                        <div class="col social"><a href="https://github.com/jaspopejoy" target="_blank"><i
+                                    class="fab fa-github fa-2x"></i></a>
                         </div>
                     </div>
                 </div>
